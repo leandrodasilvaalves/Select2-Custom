@@ -37,12 +37,10 @@
     top: 2.2em;
 }
 
-.select_dropdown {
+.select_dropdown{
     border: 0.05em solid #aaaaaa;
-    border-bottom-right-radius: 0.25em;
-    border-bottom-left-radius: 0.25em;
-    background-color: #fff;
     display: block;
+    background-color: #fff;
     position: absolute;
     z-index: 9999;
     width: calc(100% - 1.8em);

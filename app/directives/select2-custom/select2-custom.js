@@ -14,7 +14,7 @@
                 placeholder: '@',
                 model: '=ngModel'
             },
-            link: function (scope) {
+            link: function (scope, elem) {
 
                 scope.isOpened = false;
                 scope.selected = '';
@@ -25,6 +25,7 @@
 
                 scope.toogleClick = function () {
                     scope.isOpened = !scope.isOpened;
+                    _resolvePosition();
                 };
 
                 scope.setSelected = function (obj) {
@@ -61,10 +62,36 @@
                     return scope.array[index];
                 };
 
+                var _offsetElemento = function(el) {
+                    var rect = el.getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+                };
+
+                var _percentualXdeY= function(x, y){
+                    return (x/y) * 100;
+                }
+
+                var _resolvePosition = function(){
+                    var topElem = _offsetElemento(elem[0]).top;
+                    var bodyHeight =document.body.offsetHeight;
+                    var result = _percentualXdeY(topElem, bodyHeight);
+                    var dropdow = elem[0].getElementsByClassName('select_dropdown')[0];
+                    
+                    if(result > 90){
+                        dropdow.style.bottom="1.92em";
+                        dropdow.style.borderRadius="0.25em 0.25em 0 0";
+                    }
+                    else{
+                        dropdow.style.borderRadius="0 0 0.25em 0.25em";                            
+                    }
+                }
+
                 var _init = function () {
                     scope.withTemplate = scope.template != undefined;
                 };
-
+                
                 _init();
             }
 
