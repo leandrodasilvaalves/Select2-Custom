@@ -1,6 +1,6 @@
 (function(app){
 
-    var select2Mother = function(){
+    var select2Mother = function($document){
         return{
             restrict:'A',
             controller: function(){
@@ -10,14 +10,15 @@
                         angular.element(select2All[i]).scope().isOpened = false;
                     }
                 };
-                document.addEventListener('click',function(e){ 
-                   
+                $document.on('click',function(){
+                    console.log('clicou');
+                    _closeAll();
                 });
             }
         }
 
     };
 
-    app.directive('select2Mother',[select2Mother]);
+    app.directive('select2Mother',['$document', select2Mother]);
     
 })(angular.module('select2Cust'));
