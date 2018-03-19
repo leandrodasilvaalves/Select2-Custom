@@ -24,7 +24,7 @@
                 scope.showClean = false;
 
                 scope.toogleClick = function () {
-                    scope.isOpened = !scope.isOpened;
+                     scope.isOpened = !scope.isOpened;
                     _resolvePosition();
                 };
 
